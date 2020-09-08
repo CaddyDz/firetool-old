@@ -1,3 +1,4 @@
 *
 !.gitignore
 !footer.blade.php
+!logo.blade.php
