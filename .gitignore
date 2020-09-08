@@ -12,3 +12,7 @@ npm-debug.log
 yarn-error.log
 /public/css/*
 /public/js/*
+/nova
+.DS_Store
+public/vendor
+resources/lang/vendor
