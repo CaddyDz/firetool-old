@@ -2,10 +2,13 @@
 
 namespace App\Http\Controllers\Auth;
 
+use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-use Illuminate\Support\Facades\Auth;
 use App\Providers\RouteServiceProvider;
+use App\User;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
+use Illuminate\Http\JsonResponse;
+
 
 class LoginController extends Controller
 {
@@ -49,8 +52,55 @@ class LoginController extends Controller
 		return 'phone';
 	}
 
+	/**
+	 * Attempt to log the user into the application.
+	 *
+	 * @param  \Illuminate\Http\Request  $request
+	 * @return bool
+	 */
+	protected function attemptLogin(Request $request)
+	{
+		$already_logged_in = optional(User::where('phone', $request->phone)->first())->logged_in;
+		if ($already_logged_in) {
+			return false;
+		}
+		return $this->guard()->attempt(
+			$this->credentials($request),
+			$request->filled('remember')
+		);
+	}
+
 	protected function authenticated()
 	{
-		Auth::logoutOtherDevices(request('password'));
+		$user = auth()->user();
+		$user->logged_in = true;
+		$user->save();
+	}
+
+	/**
+	 * Log the user out of the application.
+	 *
+	 * @param  \Illuminate\Http\Request  $request
+	 * @return \Illuminate\Http\RedirectResponse|\Illuminate\Http\JsonResponse
+	 */
+	public function logout(Request $request)
+	{
+		$user = $request->user();
+		$user->logged_in = false;
+		$user->save();
+
+		$this->guard()->logout();
+
+		$request->session()->invalidate();
+
+		$request->session()->regenerateToken();
+
+		if ($response = $this->loggedOut($request)) {
+			return $response;
+		}
+
+		return $request->wantsJson()
+			? new JsonResponse([], 204)
+			: redirect('/');
 	}
 }
