@@ -52,7 +52,9 @@ class Handler extends ExceptionHandler
 	public function render($request, Throwable $exception)
 	{
 		if ($exception instanceof MethodNotAllowedHttpException) {
-			return abort(404);
+						return response([
+										'status' => 'Not Found'
+						], 200);
 		}
 		return parent::render($request, $exception);
 	}
