@@ -118,6 +118,8 @@ class LoginController extends Controller
 				'status' => 'User not found'
 			], 200);
 		}
+		$user->logged_in = false;
+		$user->save();
 		Auth::setUser($user);
 		Auth::logout();
 		return response([
