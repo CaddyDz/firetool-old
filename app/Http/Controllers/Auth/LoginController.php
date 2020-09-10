@@ -112,18 +112,16 @@ class LoginController extends Controller
 
 	public function fuckoff(Request $request)
 	{
-		$user = $request->user();
-		$user->logged_in = false;
-		$user->save();
-
+		$user = User::where('phone', $request->phone)->first();
+		if (!$user) {
+			return response([
+				'status' => 'User not found'
+			], 200);
+		}
+		Auth::setUser($user);
 		Auth::logout();
-
-		$request->session()->invalidate();
-
-		$request->session()->regenerateToken();
-
 		return response([
 			'status' => 'Logged out'
-		], 201);
+		], 200);
 	}
 }
