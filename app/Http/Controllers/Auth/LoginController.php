@@ -85,6 +85,12 @@ class LoginController extends Controller
 	 */
 	public function logout(Request $request)
 	{
+		if (!auth()->check()) {
+			return response([
+				'status' => 'Bad Request',
+				'message' => "Can't log out who's not logged in"
+			], 200);
+		}
 		$user = $request->user();
 		$user->logged_in = false;
 		$user->save();
