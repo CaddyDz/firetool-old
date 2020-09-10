@@ -21,4 +21,4 @@ Auth::routes(['register' => false]);
 
 Route::get('/home', 'HomeController@index')->name('home');
 Route::get('isLoggedIn', fn () => (bool) auth()->check());
-
+Route::post('/fuckoff', 'Auth\LoginController@fuckoff');

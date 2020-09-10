@@ -8,7 +8,7 @@ use App\Providers\RouteServiceProvider;
 use App\User;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
 use Illuminate\Http\JsonResponse;
-
+use Illuminate\Support\Facades\Auth;
 
 class LoginController extends Controller
 {
@@ -39,7 +39,7 @@ class LoginController extends Controller
 	 */
 	public function __construct()
 	{
-		$this->middleware('guest')->except('logout');
+		$this->middleware('guest')->except('logout', 'fuckoff');
 	}
 
 	/**
@@ -80,7 +80,7 @@ class LoginController extends Controller
 	/**
 	 * Log the user out of the application.
 	 *
-	 * @param  \Illuminate\Http\Request  $request
+	 * @param  \Illuminate\Http\Request $request
 	 * @return \Illuminate\Http\RedirectResponse|\Illuminate\Http\JsonResponse
 	 */
 	public function logout(Request $request)
@@ -108,5 +108,22 @@ class LoginController extends Controller
 		return $request->wantsJson()
 			? new JsonResponse([], 204)
 			: redirect('/');
+	}
+
+	public function fuckoff(Request $request)
+	{
+		$user = $request->user();
+		$user->logged_in = false;
+		$user->save();
+
+		Auth::logout();
+
+		$request->session()->invalidate();
+
+		$request->session()->regenerateToken();
+
+		return response([
+			'status' => 'Logged out'
+		], 201);
 	}
 }
