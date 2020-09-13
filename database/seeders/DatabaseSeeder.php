@@ -7,14 +7,14 @@ use Illuminate\Database\Seeder;
 
 class DatabaseSeeder extends Seeder
 {
-    /**
-     * Seed the application's database.
-     *
-     * @return void
-     */
-    public function run()
+	/**
+	 * Seed the application's database.
+	 *
+	 * @return void
+	 */
+	public function run()
 		{
 			  User::factory()->create(['email' => 'appfiretool@gmail.com']);
-        User::factory(10)->create();
-    }
+		User::factory(10)->create();
+	}
 }
