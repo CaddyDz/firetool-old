@@ -13,3 +13,4 @@ yarn-error.log
 /nova
 public/vendor
 resources/lang/vendor
+.php_cs.cache
