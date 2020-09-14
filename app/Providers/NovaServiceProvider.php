@@ -2,8 +2,9 @@
 
 namespace App\Providers;
 
-use Illuminate\Support\Facades\Gate;
 use Laravel\Nova\Nova;
+use Illuminate\Support\Facades\Gate;
+use Illuminate\Support\Facades\Route;
 use Laravel\Nova\NovaApplicationServiceProvider;
 
 class NovaServiceProvider extends NovaApplicationServiceProvider
@@ -25,10 +26,37 @@ class NovaServiceProvider extends NovaApplicationServiceProvider
 	 */
 	protected function routes()
 	{
+		$this->withAuthenticationRoutes();
 		Nova::routes()
-				->withAuthenticationRoutes()
-				->withPasswordResetRoutes()
-				->register();
+			->register();
+	}
+
+	/**
+	 * Register the Nova authentication routes.
+	 *
+	 * @param array $middleware
+	 * @return $this
+	 */
+	public function withAuthenticationRoutes($middleware = ['web'])
+	{
+		Route::namespace('App\Http\Controllers')
+			->domain(config('nova.domain', null))
+			->middleware($middleware)
+			->prefix(Nova::path())
+			->group(function () {
+				Route::get('/login', 'LoginController@showLoginForm');
+				Route::post('/login', 'LoginController@login')->name('nova.login');
+			});
+
+		Route::namespace('Laravel\Nova\Http\Controllers')
+			->domain(config('nova.domain', null))
+			->middleware(config('nova.middleware', []))
+			->prefix(Nova::path())
+			->group(function () {
+				Route::get('/logout', 'LoginController@logout')->name('nova.logout');
+			});
+
+		return $this;
 	}
 
 	/**
@@ -41,8 +69,8 @@ class NovaServiceProvider extends NovaApplicationServiceProvider
 	protected function gate()
 	{
 		Gate::define('viewNova', function ($user) {
-			return in_array($user->email, [
-				'appfiretool@gmail.com'
+			return in_array($user->phone, [
+				'+213550647548'
 			]);
 		});
 	}
