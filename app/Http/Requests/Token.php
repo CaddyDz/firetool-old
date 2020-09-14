@@ -25,7 +25,7 @@ class Token extends FormRequest
 	public function rules()
 	{
 		return [
-			'phone' => ['required', 'integer', new Phone],
+			'phone' => ['required', 'integer', new Phone, 'exists:users'],
 			'password' => 'required',
 			'device_name' => 'required',
 		];
