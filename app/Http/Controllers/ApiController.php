@@ -29,9 +29,8 @@ class ApiController extends Controller
 	public function login(Token $request)
 	{
 		$user = User::where('phone', $request->phone)->first();
-		$user->tokens()->delete();
 
-		if ($user->tokens->isNotEmpty()) {
+		if ($user && $user->tokens->isNotEmpty()) {
 			return response([
 				'status' => 'Already logged in',
 			], 403);
