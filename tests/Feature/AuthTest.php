@@ -59,6 +59,7 @@ class AuthTest extends TestCase
 		$response = $this->post('/api/login', [
 			'phone' => $this->user->phone,
 			'password' => 'password',
+			'number' => $this->user->mode,
 			'device_name' => 'cc'
 		]);
 		return $response->getContent();

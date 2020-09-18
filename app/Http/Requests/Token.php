@@ -3,6 +3,7 @@
 namespace App\Http\Requests;
 
 use App\Rules\Phone;
+use Illuminate\Validation\Rule;
 use Illuminate\Foundation\Http\FormRequest;
 
 class Token extends FormRequest
@@ -28,6 +29,7 @@ class Token extends FormRequest
 			'phone' => ['required', 'integer', new Phone],
 			'password' => 'required',
 			'device_name' => 'required',
+			'number' => ['required', 'integer', Rule::in([1, 2])]
 		];
 	}
 }

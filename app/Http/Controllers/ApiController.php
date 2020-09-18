@@ -29,7 +29,7 @@ class ApiController extends Controller
 	public function login(Token $request)
 	{
 		$user = User::where('phone', $request->phone)
-			->where('number', $request->number)
+			->where('mode', $request->number)
 			->first();
 
 		if ($user && $user->tokens->isNotEmpty()) {
