@@ -27,6 +27,7 @@ class UserFactory extends Factory
 			'phone' => $this->faker->unique()->regexify('/^\+?[0-9]+$/'),
 			'password' => '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi',
 			'remember_token' => Str::random(10),
+			'mode' => rand(1,2)
 		];
 	}
 }

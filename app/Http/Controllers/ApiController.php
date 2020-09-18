@@ -28,7 +28,9 @@ class ApiController extends Controller
 	 */
 	public function login(Token $request)
 	{
-		$user = User::where('phone', $request->phone)->first();
+		$user = User::where('phone', $request->phone)
+			->where('number', $request->number)
+			->first();
 
 		if ($user && $user->tokens->isNotEmpty()) {
 			return response([

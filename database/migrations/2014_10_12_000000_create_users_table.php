@@ -18,6 +18,7 @@ class CreateUsersTable extends Migration
 			$table->string('name');
 			$table->string('phone')->unique()->index();
 			$table->string('password');
+			$table->enum('mode', [1, 2]);
 			$table->rememberToken();
 			$table->timestamps();
 		});
