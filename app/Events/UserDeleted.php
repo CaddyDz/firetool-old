@@ -2,11 +2,7 @@
 
 namespace App\Events;
 
-use App\Models\User;
-use Illuminate\Broadcasting\Channel;
 use Illuminate\Queue\SerializesModels;
-use Illuminate\Broadcasting\PresenceChannel;
-use Illuminate\Broadcasting\PrivateChannel;
 use Illuminate\Foundation\Events\Dispatchable;
 use Illuminate\Broadcasting\InteractsWithSockets;
 use Illuminate\Contracts\Broadcasting\ShouldBroadcast;
@@ -18,18 +14,20 @@ class UserDeleted implements ShouldBroadcast
 	/**
 	 * Information about the user deleted.
 	 *
-	 * @var $id
+	 * @var $phone
 	 */
-	public int $id;
+	public string $phone;
 
 	/**
 	 * Create a new event instance.
 	 *
+	 * @param string $phone
+	 *
 	 * @return void
 	 */
-	public function __construct(int $id)
+	public function __construct(string $phone)
 	{
-		$this->id = $id;
+		$this->phone = $phone;
 	}
 
 	/**
@@ -37,7 +35,7 @@ class UserDeleted implements ShouldBroadcast
 	 *
 	 * @return \Illuminate\Broadcasting\Channel|array
 	 */
-	public function broadcastOn()
+	public function broadcastOn(): array
 	{
 		return ['user-deleted'];
 	}
@@ -47,7 +45,7 @@ class UserDeleted implements ShouldBroadcast
 	*
 	* @return string
 	*/
-	public function broadcastAs()
+	public function broadcastAs(): string
 	{
 		return 'user.deleted';
 	}
