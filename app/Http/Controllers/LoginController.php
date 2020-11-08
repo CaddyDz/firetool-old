@@ -2,8 +2,8 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
 use Laravel\Nova\Nova;
+use Illuminate\Http\Request;
 use Laravel\Nova\Http\Controllers\LoginController as NovaLoginController;
 
 class LoginController extends NovaLoginController
@@ -13,7 +13,7 @@ class LoginController extends NovaLoginController
 	 *
 	 * @return string
 	 */
-	public function username()
+	public function username(): string
 	{
 		return 'phone';
 	}

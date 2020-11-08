@@ -15,9 +15,9 @@ use App\Http\Controllers\ApiController;
 */
 
 Route::middleware(['auth:sanctum'])->group(function () {
-	//lists all users
+	// lists all users
 	Route::get('/user', [ApiController::class, 'user']);
 	Route::post('logout', [ApiController::class, 'logout']);
 });
-//auth routes
+// auth routes
 Route::post('login', [ApiController::class, 'login']);
