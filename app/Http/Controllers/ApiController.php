@@ -6,9 +6,8 @@ namespace App\Http\Controllers;
 
 use App\Models\User;
 use App\Http\Requests\Token;
-use Illuminate\Http\Request;
-use Illuminate\Http\Response;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Http\{Request, Response};
 use Illuminate\Validation\ValidationException;
 
 class ApiController extends Controller

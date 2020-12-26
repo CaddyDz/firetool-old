@@ -7,9 +7,7 @@ namespace Tests\Feature;
 use Tests\TestCase;
 use App\Models\User;
 use Laravel\Sanctum\Sanctum;
-use Illuminate\Foundation\Testing\RefreshDatabase;
-use Illuminate\Foundation\Testing\DatabaseMigrations;
-
+use Illuminate\Foundation\Testing\{DatabaseMigrations, RefreshDatabase};
 class AuthTest extends TestCase
 {
 	use DatabaseMigrations, RefreshDatabase;
