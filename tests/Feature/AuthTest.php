@@ -7,6 +7,8 @@ namespace Tests\Feature;
 use Tests\TestCase;
 use App\Models\User;
 use Laravel\Sanctum\Sanctum;
+use Illuminate\Auth\AuthenticationException;
+use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 use Illuminate\Foundation\Testing\{DatabaseMigrations, RefreshDatabase};
 
 class AuthTest extends TestCase
@@ -28,6 +30,7 @@ class AuthTest extends TestCase
 	 */
 	public function test_that_we_cannot_fetch_user_unauthenticated(): void
 	{
+		$this->expectException(AuthenticationException::class);
 		$response = $this->get('/api/user');
 
 		$response->assertUnauthorized();
@@ -40,6 +43,7 @@ class AuthTest extends TestCase
 	 */
 	public function test_index_route(): void
 	{
+		$this->expectException(NotFoundHttpException::class);
 		$response = $this->get('/');
 
 		$response->assertNotFound();
