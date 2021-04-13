@@ -6,6 +6,7 @@ namespace App\Exceptions;
 
 use Illuminate\Foundation\Exceptions\Handler as ExceptionHandler;
 use Symfony\Component\HttpKernel\Exception\{MethodNotAllowedHttpException, NotFoundHttpException};
+
 class Handler extends ExceptionHandler
 {
 	/**
@@ -34,11 +35,7 @@ class Handler extends ExceptionHandler
 	 */
 	public function register()
 	{
-		$this->renderable(function (MethodNotAllowedHttpException $e, $request) {
-			return response(['status' => 'Method not allowed'], 405);
-		});
-		$this->renderable(function (NotFoundHttpException $e, $request) {
-			return response(['status' => 'Not Found'], 404);
-		});
+		$this->renderable(fn (MethodNotAllowedHttpException $e, $request) => response(['status' => 'Method not allowed'], 405));
+		$this->renderable(fn (NotFoundHttpException $e, $request) => response(['status' => 'Not Found'], 404));
 	}
 }
