@@ -16,10 +16,12 @@ use App\Http\Controllers\ApiController;
 |
 */
 
-Route::middleware(['auth:sanctum'])->group(function () {
-	// lists all users
-	Route::get('/user', [ApiController::class, 'user']);
-	Route::post('logout', [ApiController::class, 'logout']);
+Route::controller(ApiController::class)->group(function () {
+	Route::middleware(['auth:sanctum'])->group(function () {
+		// lists all users
+		Route::get('/user', 'user');
+		Route::post('logout', 'logout');
+	});
+	// auth routes
+	Route::post('login', 'login');
 });
-// auth routes
-Route::post('login', [ApiController::class, 'login']);
