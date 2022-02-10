@@ -1,7 +1,14 @@
 /public/storage
 /storage/*.key
-/vendor
 .env
 .phpunit.result.cache
+# Package static assets
 public/vendor
+# Third party packages
+/vendor
+# Package language assets
 resources/lang/vendor
+# CS fixer cache
+.php-cs-fixer.cache
+# macOS finder
+.DS_Store
