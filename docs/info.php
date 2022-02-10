@@ -8,7 +8,7 @@ declare(strict_types=1);
  *      title="Firetool auth documentation",
  *      description="The project is an api to authenticate an android app",
  *      @OA\Contact(
- *          email="salim@sitando.com"
+ *          email="gh@salimdj.me"
  *      ),
  *      @OA\License(
  *          name="Apache 2.0",
@@ -18,6 +18,9 @@ declare(strict_types=1);
  *
  * @OA\Server(
  *      url=L5_SWAGGER_CONST_HOST,
- *      description="Local env"
+ *      description="API Host"
  * )
  */
+class info_docs
+{
+}

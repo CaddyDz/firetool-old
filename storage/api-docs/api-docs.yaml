@@ -3,48 +3,16 @@ info:
   title: 'Firetool auth documentation'
   description: 'The project is an api to authenticate an android app'
   contact:
-    email: salim@sitando.com
+    email: gh@salimdj.me
   license:
     name: 'Apache 2.0'
     url: 'http://www.apache.org/licenses/LICENSE-2.0.html'
   version: 1.0.0
 servers:
   -
-    url: 'https://lukas.dev'
-    description: 'Local env'
+    url: 'https://firetool.test'
+    description: 'API Host'
 paths:
-  /api/login:
-    post:
-      tags:
-        - Login
-      summary: 'Generate a token for user'
-      operationId: login
-      parameters:
-        -
-          name: phone
-          in: query
-          required: true
-          schema:
-            type: string
-        -
-          name: password
-          in: query
-          required: true
-          schema:
-            type: string
-        -
-          name: device_name
-          in: query
-          required: true
-          schema:
-            type: string
-      responses:
-        200:
-          description: Success
-          content:
-            application/json: []
-        403:
-          description: Forbidden
   /api/logout:
     post:
       tags:

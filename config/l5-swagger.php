@@ -161,7 +161,7 @@ return [
 		 * Uncomment to add constants which can be used in annotations
 		 */
 		'constants' => [
-			'L5_SWAGGER_CONST_HOST' => env('APP_URL', 'http://my-default-host.com'),
+			'L5_SWAGGER_CONST_HOST' => env('APP_URL', 'https://firetool.salimdj.me'),
 		],
 	],
 ];

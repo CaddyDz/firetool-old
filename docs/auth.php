@@ -67,3 +67,6 @@ declare(strict_types=1);
  *   )
  *)
  **/
+class auth_docs
+{
+}

@@ -15,4 +15,4 @@ use Illuminate\Support\Facades\Broadcast;
 |
 */
 
-Broadcast::channel('user-deleted', fn() => true);
+Broadcast::channel('user-deleted', fn () => true);
