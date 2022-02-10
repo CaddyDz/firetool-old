@@ -1,0 +1,13 @@
+{
+	"recommendations": [
+		"amiralizadeh9480.laravel-extra-intellisense",
+		"bmewburn.vscode-intelephense-client",
+		"breezelin.phpstan",
+		"editorconfig.editorconfig",
+		"junstyle.php-cs-fixer",
+		"onecentlin.laravel-blade",
+		"sonarsource.sonarlint-vscode",
+		"stef-k.laravel-goto-controller",
+		"xdebug.php-debug"
+	]
+}
