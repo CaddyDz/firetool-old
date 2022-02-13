@@ -12,3 +12,6 @@ resources/lang/vendor
 .php-cs-fixer.cache
 # macOS finder
 .DS_Store
+# IDE Helper generated files
+_ide_helper.php
+.phpstorm.meta.php
