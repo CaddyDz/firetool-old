@@ -27,7 +27,7 @@ class TokenRequest extends FormRequest
 	public function rules(): array
 	{
 		return [
-			'phone' => ['required', 'integer', new Phone],
+			'phone' => ['required', 'string', new Phone],
 			'password' => 'required',
 			'device_name' => 'required',
 			'number' => 'required|integer|in:1,2',

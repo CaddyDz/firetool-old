@@ -19,15 +19,21 @@ class ApiController extends Controller
 	 */
 	public function user(Request $request)
 	{
-		return $request->user();
+		$user = $request->user();
+		return response([
+			'name' => $user->name,
+			'phone' => $user->phone,
+			'mode' => $user->mode,
+		]);
 	}
 
 	/**
 	 * login api
 	 *
-	 * @return \Illuminate\Http\Response
+	 * @return \Illuminate\Http\Response|string usable Bearer token
+	 * @throws \Illuminate\Validation\ValidationException
 	 */
-	public function login(TokenRequest $request)
+	public function login(TokenRequest $request): Response|string
 	{
 		$user = User::where('phone', $request->phone)
 			->where('mode', $request->number)
@@ -54,6 +60,7 @@ class ApiController extends Controller
 	 * Revoke all tokens of user
 	 *
 	 * @param \Illuminate\Http\Request $request Request object
+	 *
 	 * @return \Illuminate\Http\Response
 	 **/
 	public function logout(Request $request): Response

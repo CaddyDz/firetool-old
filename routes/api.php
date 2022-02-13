@@ -17,11 +17,11 @@ use App\Http\Controllers\ApiController;
 */
 
 Route::controller(ApiController::class)->group(function () {
+	Route::post('login', 'login');
 	Route::middleware(['auth:sanctum'])->group(function () {
 		// lists all users
 		Route::get('/user', 'user');
 		Route::post('logout', 'logout');
 	});
 	// auth routes
-	Route::post('login', 'login');
 });

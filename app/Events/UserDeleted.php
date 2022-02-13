@@ -39,14 +39,16 @@ class UserDeleted implements ShouldBroadcast
 	 */
 	public function broadcastOn(): array
 	{
-		return ['user-deleted'];
+		return [
+			'user-deleted',
+		];
 	}
 
 	/**
-	* The event's broadcast name.
-	*
-	* @return string
-	*/
+	 * The event's broadcast name.
+	 *
+	 * @return string
+	 */
 	public function broadcastAs(): string
 	{
 		return 'user.deleted';
