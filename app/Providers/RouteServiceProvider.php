@@ -33,6 +33,24 @@ class RouteServiceProvider extends ServiceProvider
 				->middleware('api')
 				->group(base_path('routes/api.php'));
 		});
+
+		if (config('app.debug')) {
+			$this->mapDevRoutes();
+		}
+	}
+
+	/**
+	 * Define the "dev" routes for the application.
+	 *
+	 * These routes are meant for testing and are inaccessible in production.
+	 *
+	 * @return void
+	 */
+	protected function mapDevRoutes(): void
+	{
+		Route::middleware('web')
+			->namespace($this->namespace)
+			->group(base_path('routes/dev.php'));
 	}
 
 	/**
