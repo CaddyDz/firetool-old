@@ -5,7 +5,7 @@ declare(strict_types=1);
 namespace App\Http\Controllers;
 
 use App\Models\User;
-use App\Http\Requests\Token;
+use App\Http\Requests\TokenRequest;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Http\{Request, Response};
 use Illuminate\Validation\ValidationException;
@@ -27,7 +27,7 @@ class ApiController extends Controller
 	 *
 	 * @return \Illuminate\Http\Response
 	 */
-	public function login(Token $request)
+	public function login(TokenRequest $request)
 	{
 		$user = User::where('phone', $request->phone)
 			->where('mode', $request->number)

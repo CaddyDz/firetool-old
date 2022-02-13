@@ -5,17 +5,16 @@ declare(strict_types=1);
 namespace App\Http\Requests;
 
 use App\Rules\Phone;
-use Illuminate\Validation\Rule;
 use Illuminate\Foundation\Http\FormRequest;
 
-class Token extends FormRequest
+class TokenRequest extends FormRequest
 {
 	/**
 	 * Determine if the user is authorized to make this request.
 	 *
 	 * @return bool
 	 */
-	public function authorize()
+	public function authorize(): bool
 	{
 		return auth()->guest();
 	}
@@ -25,13 +24,13 @@ class Token extends FormRequest
 	 *
 	 * @return array
 	 */
-	public function rules()
+	public function rules(): array
 	{
 		return [
 			'phone' => ['required', 'integer', new Phone],
 			'password' => 'required',
 			'device_name' => 'required',
-			'number' => ['required', 'integer', Rule::in([1, 2])]
+			'number' => 'required|integer|in:1,2',
 		];
 	}
 }
