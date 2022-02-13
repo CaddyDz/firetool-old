@@ -22,14 +22,14 @@ class UserFactory extends Factory
 	 *
 	 * @return array
 	 */
-	public function definition()
+	public function definition(): array
 	{
 		return [
 			'name' => $this->faker->name,
-			'phone' => $this->faker->unique()->regexify('/^\+?[0-9]+$/'),
+			'phone' => $this->faker->phoneNumber,
 			'password' => '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi',
 			'remember_token' => Str::random(10),
-			'mode' => rand(1,2)
+			'mode' => rand(1, 2)
 		];
 	}
 }
