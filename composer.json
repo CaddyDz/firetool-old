@@ -21,7 +21,7 @@
 	"require-dev": {
 		"barryvdh/laravel-ide-helper": "^2.12",
 		"brianium/paratest": "^6.4",
-		"fakerphp/faker": "^1.19",
+		"fakerphp/faker": "^1.20",
 		"friendsofphp/php-cs-fixer": "^3.6",
 		"laravel/homestead": "^13.2",
 		"mockery/mockery": "^1.5",
