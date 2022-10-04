@@ -15,7 +15,7 @@
 		"laravel/nova": "^3.31",
 		"laravel/sanctum": "^2.14",
 		"laravel/tinker": "^2.7",
-		"pusher/pusher-php-server": "~7.0",
+		"pusher/pusher-php-server": "~7.2",
 		"sentry/sentry-laravel": "^2.11"
 	},
 	"require-dev": {
